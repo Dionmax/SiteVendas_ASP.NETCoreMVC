@@ -10,7 +10,7 @@ namespace SalesWebMVC.Controllers
 {
     public class SellersController : Controller
     {
-        private SellerService _sellerService;
+        private readonly SellerService _sellerService;
 
         public SellersController(SellerService sellerService)
         {
