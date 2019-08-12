@@ -9,19 +9,29 @@ namespace SalesWebMVC.Services
     public class SellerService
     {
         private readonly SalesWebMVCContext _context;
-      
+
         public SellerService(SalesWebMVCContext context)
         {
             _context = context;
         }
 
         // Método não Async por hora.
-        public List<Seller> FindAll() 
+        public List<Seller> FindAll()
             => _context.Seller.ToList();
 
         public void Insert(Seller obj)
         {
             _context.Add(obj);
+            _context.SaveChanges();
+        }
+
+        public Seller FindById(int id)
+            => _context.Seller.FirstOrDefault(obj => obj.Id == id);
+
+        public void Remove(int id)
+        {
+            var obj = _context.Seller.Find(id);
+            _context.Seller.Remove(obj);
             _context.SaveChanges();
         }
     }
